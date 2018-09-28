@@ -6,7 +6,13 @@ BINARY="/usr/bin/fusee-nano /usr/share/fusee-nano/payload.bin"
 APX_PRODID="955/7321/102"
 
 if [ "${ACTION}" = "add" ]; then
-    if [ "${PRODUCT}" = "${APX_PRODID}" ]; then
-        ${BINARY}
-    fi
+    logger -t fusee-nano New ${DEVTYPE} detected, scanning for Switch.
+        if [ "${DEVTYPE}" = "usb_device" ]
+        then
+            if [ "${PRODUCT}" = "${APX_PRODID}" ]; then
+                logger -t fusee-nano Detected Switch, injecting payload.
+                ${BINARY}
+                logger -t fusee-nano Payload injected.
+            fi
+        fi
 fi
