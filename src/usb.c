@@ -165,7 +165,7 @@ int ctrl_transfer_unbounded(int fd, int length)
 		.usercontext = (void *) 0x1337,
 	};
 	
-	usleep(1000000);
+	usleep(1000*10);
 	
 	if (ioctl(fd, USBDEVFS_SUBMITURB, &urb) < 0)
 		return -1;
